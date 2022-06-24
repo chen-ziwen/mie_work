@@ -22,6 +22,10 @@
             </TabPane>
         </Tabs>
     </div>
+    <div class="position">
+        <ThemeChoose :options="configPlay" @theme="getTheme"></ThemeChoose>
+    </div>
+
 </template>
 
 <script lang='ts' setup>
@@ -29,9 +33,11 @@ import { ref, provide, watch, computed } from 'vue';
 // 需要用到的五个组件
 import Tabs from '@/components/task/config-play/tabs/tabs.vue';
 import TabPane from '@/components/task/config-play/tabs/tab-pane.vue';
-import ConfigList from './ConfigList.vue';
-import ConfigIcon from './ConfigIcon.vue';
-import ConfigSimpleList from './ConfigSimpleList.vue';
+import ConfigList from '@/components/task/config-play/config/ConfigList.vue';
+import ConfigIcon from '@/components/task/config-play/config/ConfigIcon.vue';
+import ConfigSimpleList from '@/components/task/config-play/config/ConfigSimpleList.vue';
+import ThemeChoose from '@/components/common/theme-choose/theme.vue';
+import { configPlay } from '@/components/common/theme-choose/config';
 // 数据结构
 import { data, data2, topping, del, a } from '@/config/config-play/config'
 // 三个主题的颜色和按钮
@@ -40,9 +46,24 @@ import { theme } from '@/config/config-play/theme';
 //三个主题色加图标
 const { white, black, pink } = theme;
 
+
 // 默认选中白色主题,需要切换主题时只需要将上面解构出来的三个主题色赋值给newTheme即可。
 const newTheme = ref(black);
 
+function getTheme(key: string) {
+    switch (key) {
+        case "white":
+            newTheme.value = white;
+            break;
+        case "black":
+            newTheme.value = black;
+            break;
+        case "pink":
+            newTheme.value = pink;
+            break;
+    }
+
+}
 // 将值传递给子孙组件
 provide('theme', newTheme);
 
@@ -53,6 +74,7 @@ const color = computed(() => {
 
 // 选中第一个tag列表
 const name = ref<string>('first');
+
 
 //#region 
 
@@ -135,5 +157,11 @@ function config(key: any) {
 
 .list-leave-active {
     position: absolute;
+}
+
+.position {
+    position: fixed;
+    top: 30%;
+    left: 50%;
 }
 </style>

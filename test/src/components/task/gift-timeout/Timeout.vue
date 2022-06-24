@@ -1,7 +1,7 @@
 <template>
     <div class="gift-timeout">
         <div class="title-double-box">
-            <TitleDouble theme="cat">
+            <TitleDouble :theme="theme">
                 <div class="timeout-content">
                     <span>距离下播时间</span>
                     <span> 09:30:06<i class="twinkle">”</i></span>
@@ -9,9 +9,9 @@
             </TitleDouble>
         </div>
         <div class="nine-slice-simple-box">
-            <NineSliceSimple theme="cat" :width="270">
+            <NineSliceSimple :theme="theme" :width="270">
                 <div class="nine-plain-box">
-                    <NinePlain theme="cat" v-for="(item, index) in arr" :key="index" :parity="change">
+                    <NinePlain :theme="theme" v-for="(item, index) in arr" :key="index" :parity="change">
                         <div class="text-content">
                             <div class="gift-count">
                                 <img src="./ava.jpeg">
@@ -24,13 +24,15 @@
                             </div>
                         </div>
                     </NinePlain>
-                    <NinePlain theme="cat" :width="262" :height="34">
+                    <NinePlain :theme="theme" :width="262" :height="34">
                         <span class="user-message">@用户ID昵称比较长，<span class="gift-score">+{{ 60 }}</span></span>
                     </NinePlain>
                 </div>
             </NineSliceSimple>
         </div>
     </div>
+    <!-- 皮肤选择组件 -->
+    <ThemeChoose :options="skin" @theme="getTheme" title="皮肤选择"></ThemeChoose>
 </template>
 <script lang='ts' setup>
 import { computed, watch, ref } from "vue";
@@ -38,6 +40,15 @@ import { computed, watch, ref } from "vue";
 import TitleDouble from "@/components/common/title-double/TitleDouble.vue";
 import NineSliceSimple from '@/components/common/nine-slice-simple/NineSliceSimple.vue';
 import NinePlain from "@/components/common/nine-plain/NinePlain.vue";
+
+// 皮肤选择 （上线时删掉）
+import ThemeChoose from '@/components/common/theme-choose/theme.vue';
+import { skin } from '@/components/common/theme-choose/config';
+const theme = ref<string>('neon');
+function getTheme(key: string) {
+    theme.value = key;
+}
+//皮肤选择 （上线时删掉）
 
 const arr = ref([
     { type: 'add', name: '十年', count: 60, time: 20 },
