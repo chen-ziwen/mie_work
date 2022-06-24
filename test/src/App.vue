@@ -13,14 +13,20 @@
     <!-- <LabelCardTest></LabelCardTest> -->
     <!-- <LabelCardTest2></LabelCardTest2> -->
 
+    <!-- b站排行榜 -->
+    <RankTest></RankTest>
 
 </template>
 <script setup lang="ts">
 import Timeout from '@/components/task/gift-timeout/Timeout.vue';
+
 import ConfigAll from '@/components/task/config-play/ConfigAll.vue';
+
 import LabelCard from './components/task/label-card/LabelCard.vue';
 import LabelCardTest from './components/task/label-card/LabelCardTest.vue';
 import LabelCardTest2 from './components/task/label-card/LabelCardTest2.vue';
+
+import RankTest from './components/task/rank/RankTest.vue'
 
 </script>
 
