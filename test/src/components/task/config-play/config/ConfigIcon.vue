@@ -26,7 +26,7 @@
 </template>
 
 <script lang='ts' setup>
-import type { MyTheme } from './dataInter';
+import type { MyTheme } from '@/config/config-play/dataInter';
 import { inject, computed, Ref } from 'vue';
 const myTheme = inject('theme') as Ref<MyTheme>;
 const color = computed(() => {

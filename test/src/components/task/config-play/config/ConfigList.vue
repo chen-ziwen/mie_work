@@ -40,8 +40,8 @@
 <script lang='ts' setup>
 // 单条列表组件
 import { inject, Ref, computed } from 'vue';
-import type { MyTheme } from './dataInter';
-import FansMedal from './FansMedal.vue';
+import type { MyTheme } from '@/config/config-play/dataInter';
+import FansMedal from '@/components/common/fans-medal/FansMedal.vue';
 // 导入主题图标
 interface ConfigListProps {
     userName: string;

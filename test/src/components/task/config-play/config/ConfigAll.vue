@@ -27,15 +27,15 @@
 <script lang='ts' setup>
 import { ref, provide, watch, computed } from 'vue';
 // 需要用到的五个组件
-import Tabs from './tabs.vue';
-import TabPane from './tab-pane.vue';
+import Tabs from '@/components/task/config-play/tabs/tabs.vue';
+import TabPane from '@/components/task/config-play/tabs/tab-pane.vue';
 import ConfigList from './ConfigList.vue';
 import ConfigIcon from './ConfigIcon.vue';
 import ConfigSimpleList from './ConfigSimpleList.vue';
 // 数据结构
-import { data, data2, topping, del, a } from './config';
+import { data, data2, topping, del, a } from '@/config/config-play/config'
 // 三个主题的颜色和按钮
-import { theme } from './theme';
+import { theme } from '@/config/config-play/theme';
 
 //三个主题色加图标
 const { white, black, pink } = theme;
@@ -57,35 +57,35 @@ const name = ref<string>('first');
 //#region 
 
 // 换主题用的配置项 上线的时候需要删掉 下面不需要的
-// const skin = ref('');
-// watch(skin, () => {
-//     switch (skin.value) {
-//         case 'white':
-//             newTheme.value = white;
-//             break;
-//         case 'black':
-//             newTheme.value = black;
-//             break;
-//         case 'pink':
-//             newTheme.value = pink;
-//             break;
-//     }
-// })
+const skin = ref('');
+watch(skin, () => {
+    switch (skin.value) {
+        case 'white':
+            newTheme.value = white;
+            break;
+        case 'black':
+            newTheme.value = black;
+            break;
+        case 'pink':
+            newTheme.value = pink;
+            break;
+    }
+})
 
-// const options = [
-//     {
-//         value: 'white',
-//         label: '白色主题'
-//     },
-//     {
-//         value: 'black',
-//         label: '黑色主题'
-//     },
-//     {
-//         value: 'pink',
-//         label: '粉色主题'
-//     }
-// ];
+const options = [
+    {
+        value: 'white',
+        label: '白色主题'
+    },
+    {
+        value: 'black',
+        label: '黑色主题'
+    },
+    {
+        value: 'pink',
+        label: '粉色主题'
+    }
+];
 //上面不需要
 
 //#endregion

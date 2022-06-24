@@ -25,7 +25,7 @@
 
 <script lang='ts' setup>
 import { inject, computed, Ref } from 'vue';
-import type { MyTheme } from './dataInter';
+import type { MyTheme } from '@/config/config-play/dataInter';
 
 interface ConfigSimpleListProps {
     order: number;

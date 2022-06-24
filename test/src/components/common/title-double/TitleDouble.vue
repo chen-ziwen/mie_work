@@ -13,7 +13,7 @@ interface TitleDouble {
 }
 const props = defineProps<TitleDouble>();
 
-const src = computed(() => `url(/assets/images/common/TitleDouble/${props.theme}.png)`)
+const src = computed(() => `url(/assets/common/TitleDouble/${props.theme}.png)`)
 
 </script>
 

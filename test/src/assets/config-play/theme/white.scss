@@ -1,0 +1,103 @@
+$headback: rgba(244, 244, 244);
+$contentback: rgba(255, 255, 255);
+$tagtext: rgba(153, 153, 153);
+$songtext: rgba(51, 51, 51);
+$contenttext: rgba(51, 51, 51);
+$checkedback: rgba(237, 237, 237);
+$uncheckedback: rgba(244, 244, 244);
+$footline: rgba(46, 204, 156);
+$timeback : rgba(121, 187, 255);
+$conf : rgba(155, 155, 155);
+$tick : rgba(46, 204, 156);
+$cross : rgba(245, 108, 108);
+
+.white {
+    .headback {
+        background: $headback;
+    }
+
+    .contentback {
+        background: $contentback;
+    }
+
+    .config-list,
+    .config-simple-list {
+        &:nth-of-type(2n-1) {
+            background: $uncheckedback;
+        }
+
+        &:hover {
+            background: $checkedback  !important;
+        }
+    }
+
+    .main-content,
+    .main-simple-content {
+        .main-order {
+            color: $tagtext;
+        }
+
+        .main-songName {
+            color: $songtext;
+        }
+
+        .main-userName {
+            color: $tagtext; // tagtext
+        }
+    }
+
+    .message-gift {
+        .i-gift {
+            color: $tagtext;
+        }
+    }
+
+    .vice-content {
+        .vice-username {
+            color: $tagtext;
+        }
+
+        .vice-time {
+            background: $timeback; //timeback
+        }
+
+        .vice-icon {
+            color: $tagtext; // tagtext
+
+            .check {
+                color: $tick  !important; //tick
+            }
+
+            .close {
+                color: $cross  !important; //cross
+            }
+        }
+    }
+
+    .tag-select {
+        color: $tagtext  !important;
+    }
+
+    .selected {
+        color: $contenttext  !important;
+
+        &::after {
+            background: $footline  !important;
+        }
+    }
+
+    .config-box {
+        .svg-icon {
+            fill: $conf;
+        }
+    }
+
+    .refresh-icon,
+    .plus-icon {
+        color: $tagtext  !important;
+
+        &:hover {
+            color: $contenttext  !important;
+        }
+    }
+}

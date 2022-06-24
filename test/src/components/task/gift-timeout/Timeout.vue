@@ -1,31 +1,31 @@
 <template>
     <div class="gift-timeout">
         <div class="title-double-box">
-            <TitleDouble :theme="theme">
-                <div class="timeout-content" :style="{ color: othercolor, textShadow: otherback }">
+            <TitleDouble theme="cat">
+                <div class="timeout-content">
                     <span>距离下播时间</span>
-                    <span>{{ handleTime(now) }}<i class="twinkle">”</i></span>
+                    <span> 09:30:06<i class="twinkle">”</i></span>
                 </div>
             </TitleDouble>
         </div>
         <div class="nine-slice-simple-box">
-            <NineSliceSimple :theme="theme" :width="270">
+            <NineSliceSimple theme="cat" :width="270">
                 <div class="nine-plain-box">
-                    <NinePlain :theme="theme" v-for="(item, index) in giftList" :key="index" :parity="change">
+                    <NinePlain theme="cat" v-for="(item, index) in arr" :key="index" :parity="change">
                         <div class="text-content">
                             <div class="gift-count">
-                                <img :src="giftMsg(item.gift).icon">
+                                <img src="./ava.jpeg">
                             </div>
                             <div class="change-time">
-                                <span class="amount" :style="{ color: othercolor, textShadow: otherback }">{{ giftMsg(item.gift).name }}</span>
+                                <span class="amount">{{ item.name }}</span>
                                 <div class="time-message">
-                                    <span :style="{ color: item.type === 'add' ? addcolor : cutcolor, textShadow: item.type === 'add' ? addback : cutback }">{{ item.type === 'add' ? '+' : '-' }}{{ item.count }}s</span>
+                                    <span>{{ item.type === 'add' ? '+' : '-' }}{{ item.count }}s</span>
                                 </div>
                             </div>
                         </div>
                     </NinePlain>
-                    <NinePlain :theme="theme" :width="262" :height="34">
-                        <span class="user-message" :style="{ color: othercolor, textShadow: otherback }">@用户ID昵称比较长，<span class="gift-score">+{{ time }}</span></span>
+                    <NinePlain theme="cat" :width="262" :height="34">
+                        <span class="user-message">@用户ID昵称比较长，<span class="gift-score">+{{ 60 }}</span></span>
                     </NinePlain>
                 </div>
             </NineSliceSimple>
@@ -35,112 +35,117 @@
 <script lang='ts' setup>
 import { computed, watch, ref } from "vue";
 // import { useToolkitGiftTimeout, useQueryGiftData } from "@/renderer/use";
-import TitleDouble from "@/common/title-double/TitleDouble.vue";
-import NineSliceSimple from '@/common/nine-slice-simple/NineSliceSimple.vue';
-import NinePlain from "@/common/nine-plain/NinePlain.vue";
+import TitleDouble from "@/components/common/title-double/TitleDouble.vue";
+import NineSliceSimple from '@/components/common/nine-slice-simple/NineSliceSimple.vue';
+import NinePlain from "@/components/common/nine-plain/NinePlain.vue";
 
-const { now, config, time, tend } = useToolkitGiftTimeout();
-// 抓取礼物信息
-const { gifts } = useQueryGiftData();
+const arr = ref([
+    { type: 'add', name: '十年', count: 60, time: 20 },
+    { type: 'sub', name: '孤勇者', count: 60, time: 20 },
+    { type: 'add', name: '爱的供养', count: 60, time: 20 },
+]);
+// const { now, config, time, tend } = useToolkitGiftTimeout();
+// // 抓取礼物信息
+// const { gifts } = useQueryGiftData();
 
-function giftMsg(id: string) {
-    const giftId = id;
-    if (gifts?.value?.[giftId]) {
-        return { name: gifts.value[giftId].name, icon: gifts.value[giftId].icon };
-    }
-    return { name: '暂无', icon: 'none' };
-}
+// function giftMsg(id: string) {
+//     const giftId = id;
+//     if (gifts?.value?.[giftId]) {
+//         return { name: gifts.value[giftId].name, icon: gifts.value[giftId].icon };
+//     }
+//     return { name: '暂无', icon: 'none' };
+// }
 
-const theme = computed(() => {
-    return config.theme.value;
-})
-// 获取礼物列表 
-const giftList = computed(() => {
-    return config.list.value;
-})
+// const theme = computed(() => {
+//     return config.theme.value;
+// })
+// // 获取礼物列表
+// const giftList = computed(() => {
+//     return config.list.value;
+// })
 
-// 当数组长度为为奇数或偶数时，样式做出相应的变化。
+// // 当数组长度为为奇数或偶数时，样式做出相应的变化。
 const change = ref<string>('');
-watch(() => giftList.value.length, () => {
-    if (giftList.value.length % 2 === 0) {
+watch(() => arr.value.length, () => {
+    if (arr.value.length % 2 === 0) {
         change.value = 'odd';
     } else {
         change.value = 'even';
     }
 }, { immediate: true });
 
-// 将秒数转换为对应的小时、分钟、秒。
-function handleTime(time: number) {
-    if (time === 0 || tend.value) {
-        return '任务完成';
-    } else {
-        let newTime = '';
-        const hours = ~~(time / (60 * 60));
-        const minute = ~~(time / 60 % 60);
-        const second = ~~(time % 60);
-        if (second >= 0) {
-            newTime = '' + addZero(second);
-        }
-        if (minute >= 0) {
-            newTime = addZero(minute) + ':' + newTime;
-        }
-        if (hours >= 0) {
-            newTime = addZero(hours) + ':' + newTime;
-        }
-        return newTime;
-    }
-}
-// 补0函数
-function addZero(num: number) {
-    return num < 10 ? "0" + num : num;
-}
+// // 将秒数转换为对应的小时、分钟、秒。
+// function handleTime(time: number) {
+//     if (time === 0 || tend.value) {
+//         return '任务完成';
+//     } else {
+//         let newTime = '';
+//         const hours = ~~(time / (60 * 60));
+//         const minute = ~~(time / 60 % 60);
+//         const second = ~~(time % 60);
+//         if (second >= 0) {
+//             newTime = '' + addZero(second);
+//         }
+//         if (minute >= 0) {
+//             newTime = addZero(minute) + ':' + newTime;
+//         }
+//         if (hours >= 0) {
+//             newTime = addZero(hours) + ':' + newTime;
+//         }
+//         return newTime;
+//     }
+// }
+// // 补0函数
+// function addZero(num: number) {
+//     return num < 10 ? "0" + num : num;
+// }
 
-// 颜色集合
-const addcolor = computed(() => {
-    return config[theme.value + '-add-color'].value;
-})
-const cutcolor = computed(() => {
-    return config[theme.value + '-cut-color'].value;
-})
-const gapcolor = computed(() => {
-    return config[theme.value + '-gap-color'].value;
-})
-const othercolor = computed(() => {
-    return config[theme.value + '-other-color'].value;
-})
-const addback = computed(() => {
-    if (!config?.[theme.value + '-addback-shadow-color']) {
-        return '0 0 0 transparent';
-    }
-    const backcolor = config[theme.value + '-addback-shadow-color'].value;
-    if (theme.value === 'spring') {
-        return `0px 0px 6px ${backcolor}`;
-    } else {
-        return `1px -1px 5px ${backcolor},-1px 1px 5px ${backcolor},-1px -1px 5px ${backcolor},1px 1px 5px ${backcolor}`;
-    }
-})
-const cutback = computed(() => {
-    if (!config?.[theme.value + '-cutback-shadow-color']) {
-        return '0 0 0 transparent';
-    }
-    const backcolor = config[theme.value + '-cutback-shadow-color'].value;
-    if (theme.value === 'spring' || theme.value === 'fire') {
-        return `0px 0px 6px ${backcolor}`;
-    } else {
-        return `1px -1px 5px ${backcolor},-1px 1px 5px ${backcolor},-1px -1px 5px ${backcolor},1px 1px 5px ${backcolor}`;
-    }
-})
-const otherback = computed(() => {
-    if (!config?.[theme.value + '-otherback-shadow-color']) {
-        return '0 0 0 transparent';
-    }
-    const backcolor = config[theme.value + '-otherback-shadow-color'].value;
-    if (theme.value === 'spring') {
-        return `0px 0px 6px ${backcolor}`;
-    } else {
-        return `1px -1px 5px ${backcolor},-1px 1px 5px ${backcolor},-1px -1px 5px ${backcolor},1px 1px 5px ${backcolor}`;
-    }
-})
+// // 颜色集合
+// const addcolor = computed(() => {
+//     return config[theme.value + '-add-color'].value;
+// })
+// const cutcolor = computed(() => {
+//     return config[theme.value + '-cut-color'].value;
+// })
+// const gapcolor = computed(() => {
+//     return config[theme.value + '-gap-color'].value;
+// })
+// const othercolor = computed(() => {
+//     return config[theme.value + '-other-color'].value;
+// })
+// const addback = computed(() => {
+//     if (!config?.[theme.value + '-addback-shadow-color']) {
+//         return '0 0 0 transparent';
+//     }
+//     const backcolor = config[theme.value + '-addback-shadow-color'].value;
+//     if (theme.value === 'spring') {
+//         return `0px 0px 6px ${backcolor}`;
+//     } else {
+//         return `1px -1px 5px ${backcolor},-1px 1px 5px ${backcolor},-1px -1px 5px ${backcolor},1px 1px 5px ${backcolor}`;
+//     }
+// })
+// const cutback = computed(() => {
+//     if (!config?.[theme.value + '-cutback-shadow-color']) {
+//         return '0 0 0 transparent';
+//     }
+//     const backcolor = config[theme.value + '-cutback-shadow-color'].value;
+//     if (theme.value === 'spring' || theme.value === 'fire') {
+//         return `0px 0px 6px ${backcolor}`;
+//     } else {
+//         return `1px -1px 5px ${backcolor},-1px 1px 5px ${backcolor},-1px -1px 5px ${backcolor},1px 1px 5px ${backcolor}`;
+//     }
+// })
+// const otherback = computed(() => {
+//     if (!config?.[theme.value + '-otherback-shadow-color']) {
+//         return '0 0 0 transparent';
+//     }
+//     const backcolor = config[theme.value + '-otherback-shadow-color'].value;
+//     if (theme.value === 'spring') {
+//         return `0px 0px 6px ${backcolor}`;
+//     } else {
+//         return `1px -1px 5px ${backcolor},-1px 1px 5px ${backcolor},-1px -1px 5px ${backcolor},1px 1px 5px ${backcolor}`;
+//     }
+// })
 
 
 </script>
@@ -217,7 +222,7 @@ const otherback = computed(() => {
                             content: '';
                             width: 54px;
                             height: 1px;
-                            background-color: v-bind('gapcolor');
+                            background-color: red;
                         }
                     }
 

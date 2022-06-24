@@ -86,5 +86,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "./bilibili.scss";
+@import "@/assets/bilibili.scss";
 </style>

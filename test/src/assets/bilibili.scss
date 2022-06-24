@@ -1,0 +1,188 @@
+.bilibili {
+    .fans-medal {
+        font-size: 12px;
+        height: 14px;
+        line-height: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid transparent;
+        border-radius: 2px;
+    }
+
+    .fans-medal-icon {
+        width: 14px;
+        height: 14px;
+    }
+
+    .fans-medal-name {
+        white-space: nowrap;
+        min-width: 12px;
+        padding: 0 4px;
+        color: #fff;
+    }
+
+    .fans-medal-icon+.fans-medal-name {
+        padding: 0 4px 0 2px;
+    }
+
+    .fans-medal-level {
+        width: 16px;
+        background-color: #fff;
+        text-align: center;
+        border-top-left-radius: 1px;
+        border-bottom-right-radius: 1px;
+    }
+
+    .medal-guard {
+        margin-left: 10px;
+    }
+
+    .level-1,
+    .level-2,
+    .level-3,
+    .level-4 {
+        border-color: #5c968e;
+
+        .fans-medal-name,
+        .fans-medal-icon {
+            background-image: linear-gradient(45deg, #5c968e, #5c968e);
+        }
+
+        .fans-medal-level {
+            color: #5c968e;
+        }
+    }
+
+    .level-5,
+    .level-6,
+    .level-7,
+    .level-8 {
+        border-color: #5d7b9e;
+
+        .fans-medal-name,
+        .fans-medal-icon {
+            background-image: linear-gradient(45deg, #5d7b9e, #5d7b9e);
+        }
+
+        .fans-medal-level {
+            color: #5d7b9e;
+        }
+    }
+
+    .level-9,
+    .level-10,
+    .level-11,
+    .level-12 {
+        border-color: #8d7ca6;
+
+        .fans-medal-name,
+        .fans-medal-icon {
+            background-image: linear-gradient(45deg, #8d7ca6, #8d7ca6);
+        }
+
+        .fans-medal-level {
+            color: #8d7ca6;
+        }
+    }
+
+    .level-13,
+    .level-14,
+    .level-15,
+    .level-16 {
+        border-color: #be6686;
+
+        .fans-medal-name,
+        .fans-medal-icon {
+            background-image: linear-gradient(45deg, #be6686, #be6686);
+        }
+
+        .fans-medal-level {
+            color: #be6686;
+        }
+    }
+
+    .level-17,
+    .level-18,
+    .level-19,
+    .level-20 {
+        border-color: #c79d24;
+
+        .fans-medal-name,
+        .fans-medal-icon {
+            background-image: linear-gradient(45deg, #c79d24, #c79d24);
+        }
+
+        .fans-medal-level {
+            color: #c79d24;
+        }
+    }
+
+    .level-21,
+    .level-22,
+    .level-23,
+    .level-24 {
+        border-color: #67e8ff;
+
+        .fans-medal-name,
+        .fans-medal-icon {
+            background-image: linear-gradient(45deg, #1a544b, #529d92);
+        }
+
+        .fans-medal-level {
+            color: #1a544b;
+        }
+    }
+
+    .level-25,
+    .level-26,
+    .level-27,
+    .level-28 {
+        border-color: #67e8ff;
+
+        .fans-medal-name,
+        .fans-medal-icon {
+            background-image: linear-gradient(45deg, #06154c, #6888f1);
+        }
+
+        .fans-medal-level {
+            color: #06154c;
+        }
+    }
+
+    .level-29,
+    .level-30,
+    .level-31,
+    .level-32 {
+        border-color: #ffe854;
+
+        .fans-medal-name,
+        .fans-medal-icon {
+            background-image: linear-gradient(45deg, #2d0855, #9d9bff);
+        }
+
+        .fans-medal-level {
+            color: #2d0855;
+        }
+    }
+
+    .level-33,
+    .level-34,
+    .level-35,
+    .level-36,
+    .level-37,
+    .level-38,
+    .level-39,
+    .level-40 {
+        border-color: #ffe854;
+
+        .fans-medal-name,
+        .fans-medal-icon {
+            background-image: linear-gradient(45deg, #7a0423, #e986bb);
+        }
+
+        .fans-medal-level {
+            color: #7a0423;
+        }
+    }
+}
