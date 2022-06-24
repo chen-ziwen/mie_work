@@ -1,0 +1,109 @@
+$headback: rgba(255, 255, 255, 0.15);
+$contentback: linear-gradient(142deg, #F17FAC, #F79F9F);
+$tagtext: rgba(255, 255, 255);
+$songtext: rgba(255, 255, 255);
+$contenttext: rgba(235, 43, 109);
+$checkedback: rgba(227, 65, 122, 0.25);
+$uncheckedback: rgba(227, 65, 122, 0.15);
+$footline: rgba(235, 43, 109);
+$timeback : rgba(237, 73, 128);
+$conf : rgba(255, 255, 255);
+$tick : rgba(119, 230, 240);
+$cross : rgba(244, 45, 115);
+
+
+.pink {
+    .headback {
+        background: $headback;
+    }
+
+    .contentback {
+        background: $contentback ;
+    }
+
+    .config-list,
+    .config-simple-list {
+        &:nth-of-type(2n-1) {
+            background: $uncheckedback;
+        }
+
+        &:hover {
+            background: $checkedback  !important;
+        }
+    }
+
+    .main-content,
+    .main-simple-content {
+        .main-order {
+            color: $tagtext;
+        }
+
+        .main-songName {
+            color: $songtext;
+        }
+
+        .main-userName {
+            color: $tagtext; // tagtext
+        }
+
+    }
+
+    .message-gift {
+        .i-gift {
+            color: $tagtext;
+        }
+    }
+
+    .vice-content {
+        .vice-username {
+            color: $tagtext;
+        }
+
+        .vice-time {
+            background: $timeback; //timeback
+        }
+
+        .vice-icon {
+            color: $tagtext; // tagtext
+
+            .check {
+                color: $tick  !important; //tick
+            }
+
+            .close {
+                color: $cross  !important; //cross
+            }
+
+        }
+    }
+
+
+    .tag-select {
+        color: $tagtext  !important;
+    }
+
+    .selected {
+        color: $contenttext  !important;
+
+        &::after {
+            background: $footline  !important;
+        }
+    }
+
+    .config-box {
+        .svg-icon {
+            fill: $conf;
+        }
+    }
+
+    .refresh-icon,
+    .plus-icon {
+        color: $tagtext  !important;
+
+        &:hover {
+            color: $contenttext  !important;
+        }
+
+    }
+
+}
