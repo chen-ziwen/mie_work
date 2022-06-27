@@ -1,6 +1,7 @@
 <template>
     <!-- 加班挑战 -->
     <!-- <Timeout></Timeout> -->
+    <all-timeout></all-timeout>
 
     <!-- 音乐控制台 -->
     <!-- <ConfigAll></ConfigAll> -->
@@ -14,11 +15,12 @@
     <!-- <LabelCardTest2></LabelCardTest2> -->
 
     <!-- b站排行榜 -->
-    <RankTest></RankTest>
+    <!-- <RankTest></RankTest> -->
 
 </template>
 <script setup lang="ts">
 import Timeout from '@/components/task/gift-timeout/Timeout.vue';
+import AllTimeout from './components/task/gift-timeout/AllTimeout.vue';
 
 import ConfigAll from '@/components/task/config-play/ConfigAll.vue';
 

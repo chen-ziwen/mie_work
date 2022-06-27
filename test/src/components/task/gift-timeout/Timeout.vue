@@ -2,168 +2,154 @@
     <div class="gift-timeout">
         <div class="title-double-box">
             <TitleDouble :theme="theme">
-                <div class="timeout-content">
+                <div class="timeout-content" :style="textStyle">
                     <span>距离下播时间</span>
-                    <span> 09:30:06<i class="twinkle">”</i></span>
+                    <span>{{ handleTime(time) }}<i class="twinkle">”</i></span>
                 </div>
             </TitleDouble>
         </div>
         <div class="nine-slice-simple-box">
             <NineSliceSimple :theme="theme" :width="270">
                 <div class="nine-plain-box">
-                    <NinePlain :theme="theme" v-for="(item, index) in arr" :key="index" :parity="change">
+                    <NinePlain :theme="theme" v-for="(item, index) in listData" :key="index" :parity="change">
                         <div class="text-content">
                             <div class="gift-count">
-                                <img src="./ava.jpeg">
+                                <img :src="item.gift">
                             </div>
                             <div class="change-time">
-                                <span class="amount">{{ item.name }}</span>
+                                <span class="amount" :style="textStyle">{{ item.songName }}</span>
                                 <div class="time-message">
-                                    <span>{{ item.type === 'add' ? '+' : '-' }}{{ item.count }}s</span>
+                                    <span :style="judgeStyle(item.type)">{{ item.type === 'add' ? '+' : '-' }}{{ item.count }}s</span>
                                 </div>
                             </div>
                         </div>
                     </NinePlain>
                     <NinePlain :theme="theme" :width="262" :height="34">
-                        <span class="user-message">@用户ID昵称比较长，<span class="gift-score">+{{ 60 }}</span></span>
+                        <span class="user-message" :style="textStyle">@用户ID昵称比较长，<span class="gift-score">+{{ 60 }}</span></span>
                     </NinePlain>
                 </div>
             </NineSliceSimple>
         </div>
     </div>
-    <!-- 皮肤选择组件 -->
-    <ThemeChoose :options="skin" @theme="getTheme" title="皮肤选择"></ThemeChoose>
+
 </template>
 <script lang='ts' setup>
 import { computed, watch, ref } from "vue";
-// import { useToolkitGiftTimeout, useQueryGiftData } from "@/renderer/use";
 import TitleDouble from "@/components/common/title-double/TitleDouble.vue";
 import NineSliceSimple from '@/components/common/nine-slice-simple/NineSliceSimple.vue';
 import NinePlain from "@/components/common/nine-plain/NinePlain.vue";
+import { themeColor } from './themeColor'
 
-// 皮肤选择 （上线时删掉）
-import ThemeChoose from '@/components/common/theme-choose/theme.vue';
-import { skin } from '@/components/common/theme-choose/config';
-const theme = ref<string>('neon');
-function getTheme(key: string) {
-    theme.value = key;
+//基本数据,可以随意更改
+interface ListDataType {
+    songName: string; //歌名
+    count: number;// 每次增加减少的时间
+    type: string; //判断显示加号还是显示减号的字符串
+    gift: string; // 加时减时礼物的icon图标
 }
-//皮肤选择 （上线时删掉）
+interface Timeout {
+    theme: string;
+    time: number;
+    listData: ListDataType[];
+}
+const props = defineProps<Timeout>();
 
-const arr = ref([
-    { type: 'add', name: '十年', count: 60, time: 20 },
-    { type: 'sub', name: '孤勇者', count: 60, time: 20 },
-    { type: 'add', name: '爱的供养', count: 60, time: 20 },
-]);
-// const { now, config, time, tend } = useToolkitGiftTimeout();
-// // 抓取礼物信息
-// const { gifts } = useQueryGiftData();
+//将秒数转换为对应的小时、分钟、秒。 
+function handleTime(time: number) {
+    if (time === 0) {
+        return '任务完成';
+    } else {
+        let newTime = '';
+        const hours = ~~(time / (60 * 60));
+        const minute = ~~(time / 60 % 60);
+        const second = ~~(time % 60);
+        if (second >= 0) {
+            newTime = '' + addZero(second);
+        }
+        if (minute >= 0) {
+            newTime = addZero(minute) + ':' + newTime;
+        }
+        if (hours >= 0) {
+            newTime = addZero(hours) + ':' + newTime;
+        }
+        return newTime;
+    }
+}
 
-// function giftMsg(id: string) {
-//     const giftId = id;
-//     if (gifts?.value?.[giftId]) {
-//         return { name: gifts.value[giftId].name, icon: gifts.value[giftId].icon };
-//     }
-//     return { name: '暂无', icon: 'none' };
-// }
+// 补0函数
+function addZero(num: number) {
+    return num < 10 ? "0" + num : num;
+}
 
-// const theme = computed(() => {
-//     return config.theme.value;
-// })
-// // 获取礼物列表
-// const giftList = computed(() => {
-//     return config.list.value;
-// })
-
-// // 当数组长度为为奇数或偶数时，样式做出相应的变化。
+//当数组长度为为奇数或偶数时，样式做出相应的变化。
 const change = ref<string>('');
-watch(() => arr.value.length, () => {
-    if (arr.value.length % 2 === 0) {
+watch(() => props.listData.length, () => {
+    if (props.listData.length % 2 === 0) {
         change.value = 'odd';
     } else {
         change.value = 'even';
     }
 }, { immediate: true });
 
-// // 将秒数转换为对应的小时、分钟、秒。
-// function handleTime(time: number) {
-//     if (time === 0 || tend.value) {
-//         return '任务完成';
-//     } else {
-//         let newTime = '';
-//         const hours = ~~(time / (60 * 60));
-//         const minute = ~~(time / 60 % 60);
-//         const second = ~~(time % 60);
-//         if (second >= 0) {
-//             newTime = '' + addZero(second);
-//         }
-//         if (minute >= 0) {
-//             newTime = addZero(minute) + ':' + newTime;
-//         }
-//         if (hours >= 0) {
-//             newTime = addZero(hours) + ':' + newTime;
-//         }
-//         return newTime;
-//     }
-// }
-// // 补0函数
-// function addZero(num: number) {
-//     return num < 10 ? "0" + num : num;
-// }
-
-// // 颜色集合
-// const addcolor = computed(() => {
-//     return config[theme.value + '-add-color'].value;
-// })
-// const cutcolor = computed(() => {
-//     return config[theme.value + '-cut-color'].value;
-// })
-// const gapcolor = computed(() => {
-//     return config[theme.value + '-gap-color'].value;
-// })
-// const othercolor = computed(() => {
-//     return config[theme.value + '-other-color'].value;
-// })
-// const addback = computed(() => {
-//     if (!config?.[theme.value + '-addback-shadow-color']) {
-//         return '0 0 0 transparent';
-//     }
-//     const backcolor = config[theme.value + '-addback-shadow-color'].value;
-//     if (theme.value === 'spring') {
-//         return `0px 0px 6px ${backcolor}`;
-//     } else {
-//         return `1px -1px 5px ${backcolor},-1px 1px 5px ${backcolor},-1px -1px 5px ${backcolor},1px 1px 5px ${backcolor}`;
-//     }
-// })
-// const cutback = computed(() => {
-//     if (!config?.[theme.value + '-cutback-shadow-color']) {
-//         return '0 0 0 transparent';
-//     }
-//     const backcolor = config[theme.value + '-cutback-shadow-color'].value;
-//     if (theme.value === 'spring' || theme.value === 'fire') {
-//         return `0px 0px 6px ${backcolor}`;
-//     } else {
-//         return `1px -1px 5px ${backcolor},-1px 1px 5px ${backcolor},-1px -1px 5px ${backcolor},1px 1px 5px ${backcolor}`;
-//     }
-// })
-// const otherback = computed(() => {
-//     if (!config?.[theme.value + '-otherback-shadow-color']) {
-//         return '0 0 0 transparent';
-//     }
-//     const backcolor = config[theme.value + '-otherback-shadow-color'].value;
-//     if (theme.value === 'spring') {
-//         return `0px 0px 6px ${backcolor}`;
-//     } else {
-//         return `1px -1px 5px ${backcolor},-1px 1px 5px ${backcolor},-1px -1px 5px ${backcolor},1px 1px 5px ${backcolor}`;
-//     }
-// })
-
+// 颜色集合
+const addcolor = computed(() => {
+    return themeColor[props.theme].add;
+})
+const cutcolor = computed(() => {
+    return themeColor[props.theme].cut;
+})
+const gapcolor = computed(() => {
+    return themeColor[props.theme].gap;
+})
+const othercolor = computed(() => {
+    return themeColor[props.theme].other;
+})
+const addback = computed(() => {
+    if (!themeColor[props.theme]?.addback) {
+        return '0 0 0 transparent';
+    }
+    const backcolor = themeColor[props.theme].addback;
+    if (props.theme === 'spring') {
+        return `0px 0px 6px ${backcolor}`;
+    } else {
+        return `1px -1px 5px ${backcolor},-1px 1px 5px ${backcolor},-1px -1px 5px ${backcolor},1px 1px 5px ${backcolor}`;
+    }
+})
+const cutback = computed(() => {
+    if (!themeColor[props.theme]?.cutback) {
+        return '0 0 0 transparent';
+    }
+    const backcolor = themeColor[props.theme].cutback;
+    if (props.theme === 'spring' || props.theme === 'fire') {
+        return `0px 0px 6px ${backcolor}`;
+    } else {
+        return `1px -1px 5px ${backcolor},-1px 1px 5px ${backcolor},-1px -1px 5px ${backcolor},1px 1px 5px ${backcolor}`;
+    }
+})
+const otherback = computed(() => {
+    if (!themeColor[props.theme]?.otherback) {
+        return '0 0 0 transparent';
+    }
+    const backcolor = themeColor[props.theme].otherback;
+    if (props.theme === 'spring') {
+        return `0px 0px 6px ${backcolor}`;
+    } else {
+        return `1px -1px 5px ${backcolor},-1px 1px 5px ${backcolor},-1px -1px 5px ${backcolor},1px 1px 5px ${backcolor}`;
+    }
+})
+const textStyle = computed(() => {
+    return { color: othercolor.value, textShadow: otherback.value };
+})
+function judgeStyle(judge: string) {
+    return {
+        color: judge === 'add' ? addcolor.value : cutcolor.value,
+        textShadow: judge === 'add' ? addback.value : cutback.value
+    }
+}
 
 </script>
 
 <style lang='scss' scoped>
-@import 'animate.scss';
-
 .gift-timeout {
     display: flex;
     align-items: center;
@@ -233,7 +219,7 @@ watch(() => arr.value.length, () => {
                             content: '';
                             width: 54px;
                             height: 1px;
-                            background-color: red;
+                            background-color: v-bind('gapcolor');
                         }
                     }
 
@@ -253,6 +239,16 @@ watch(() => arr.value.length, () => {
                 }
             }
         }
+    }
+}
+
+@keyframes twinkle {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
     }
 }
 

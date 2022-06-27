@@ -72,7 +72,7 @@ const whstyle = computed(() => {
 
                 .amount::after {
                     width: 74px !important;
-                    height: 2px !important;
+                    height: 1px !important;
                 }
 
                 .time-message {
