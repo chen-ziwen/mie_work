@@ -1,7 +1,7 @@
 <template>
     <!-- 加班挑战 -->
     <!-- <Timeout></Timeout> -->
-    <all-timeout></all-timeout>
+    <!-- <all-timeout></all-timeout> -->
 
     <!-- 音乐控制台 -->
     <!-- <ConfigAll></ConfigAll> -->
@@ -17,6 +17,10 @@
     <!-- b站排行榜 -->
     <!-- <RankTest></RankTest> -->
 
+    <!-- Debounce节流函数测试 -->
+    <Debounce></Debounce>
+
+
 </template>
 <script setup lang="ts">
 import Timeout from '@/components/task/gift-timeout/Timeout.vue';
@@ -28,7 +32,9 @@ import LabelCard from './components/task/label-card/LabelCard.vue';
 import LabelCardTest from './components/task/label-card/LabelCardTest.vue';
 import LabelCardTest2 from './components/task/label-card/LabelCardTest2.vue';
 
-import RankTest from './components/task/rank/RankTest.vue'
+import RankTest from './components/task/rank/RankTest.vue';
+
+import Debounce from './components/cool-code/Debounce.vue';
 
 </script>
 
