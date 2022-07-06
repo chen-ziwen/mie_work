@@ -15,7 +15,7 @@ function touch(name: string, age: number) {
 }
 
 const debounce = new Debounce().use(touch, 2000);
-const debounce2 = new Debounce().use(change, 2000);
+const debounce2 = new Debounce().use(change, 2000, true);
 
 debounce('chiko', 18);
 
