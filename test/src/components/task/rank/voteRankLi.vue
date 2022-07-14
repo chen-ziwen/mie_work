@@ -1,13 +1,13 @@
 <template>
     <div class="rank-list">
         <div class="rank-medal">
-            <img src="/assets/image/rank/medal.png" v-if="rank == 1">
-            <img src="/assets/image/rank/medal2.png" v-if="rank == 2">
-            <img src="/assets/image/rank/medal3.png" v-if="rank == 3">
+            <img src="/assets/images/rank/medal.png" v-if="rank == 1">
+            <img src="/assets/images/rank/medal2.png" v-if="rank == 2">
+            <img src="/assets/images/rank/medal3.png" v-if="rank == 3">
             <span class='rank-medal-text' v-show="rank > 3">{{ rank }}</span>
         </div>
         <div class="rank-avatar">
-            <img src="/assets/image/rank/ava.png">
+            <img src="/assets/images/rank/ava.png">
             <!-- <div class="rank-avatar-mask" v-else></div> -->
         </div>
         <div class="rank-content">
@@ -50,7 +50,7 @@ $tcolor: #14887b;
     flex-shrink: 0;
     width: 440px;
     height: 68px;
-    background: url(/assets/image/rank/list.png) no-repeat;
+    background: url(/assets/images/rank/list.png) no-repeat;
     background-size: 440px;
     border-radius: 10px;
 

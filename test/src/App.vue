@@ -18,7 +18,11 @@
     <!-- <RankTest></RankTest> -->
 
     <!-- Debounce节流函数测试 -->
-    <Debounce></Debounce>
+    <!-- <Debounce></Debounce> -->
+
+    <Raffle></Raffle>
+
+    <!-- <LostList></LostList> -->
 
 
 </template>
@@ -36,6 +40,9 @@ import RankTest from './components/task/rank/RankTest.vue';
 
 import Debounce from './components/cool-code/Debounce.vue';
 
+import Raffle from './components/task/raffle/Raffle.vue';
+
+import LostList from './components/task/raffle/module/LostList.vue';
 </script>
 
 

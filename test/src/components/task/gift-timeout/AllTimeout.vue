@@ -19,9 +19,9 @@ function getTheme(key: string) {
 }
 
 const listData = ref([
-    { type: 'add', songName: '十年', count: 60, time: 20, gift: '/assets/image/timeout/ava.jpeg' },
-    { type: 'sub', songName: '孤勇者', count: 60, time: 20, gift: '/assets/image/timeout/ava.jpeg' },
-    { type: 'add', songName: '爱的供养', count: 60, time: 20, gift: '/assets/image/timeout/ava.jpeg' },
+    { type: 'add', songName: '十年', count: 60, time: 20, gift: '/assets/images/timeout/ava.jpeg' },
+    { type: 'sub', songName: '孤勇者', count: 60, time: 20, gift: '/assets/images/timeout/ava.jpeg' },
+    { type: 'add', songName: '爱的供养', count: 60, time: 20, gift: '/assets/images/timeout/ava.jpeg' },
 ]);
 //皮肤选择 （上线时删掉）
 

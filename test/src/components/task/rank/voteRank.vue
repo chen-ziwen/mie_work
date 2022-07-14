@@ -19,7 +19,7 @@
 }
 
 .rank {
-    background: url(/assets/image/rank/rank.png) no-repeat;
+    background: url(/assets/images/rank/rank.png) no-repeat;
     background-size: 542px 724px;
     width: 542px;
     height: 724px;
