@@ -8,12 +8,12 @@
                 </div>
                 <div class="tip-text">
                     <span class="text-content">抽奖条件: 1.礼物名称X99，2.发送弹幕 “抽奖”</span>
-                    <span class="text-amount">共10086人参与</span>
+                    <span class="text-amount">共{{ cards.length }}人参与</span>
                 </div>
             </div>
             <div class="lost-dialog" v-show="dislist"></div>
             <Transition name="slide-fade">
-                <LostList class="lost-amite" @close="close" v-show="dislist"></LostList>
+                <LostList class="lost-amite" @close="close" v-show="dislist" :timeshow="dislist"></LostList>
             </Transition>
         </div>
         <div class="right-box">
@@ -62,7 +62,6 @@ function close() {
 
 <style lang='scss' scoped>
 .raffle-draw {
-    position: relative;
     display: flex;
     flex-wrap: nowrap;
 
@@ -74,8 +73,9 @@ function close() {
         height: 680px;
 
         .raffle-card-box {
-            position: absolute;
-            transform: translate(-15px, 25px);
+            position: relative;
+            left: -15px;
+            top: 25px;
 
             ::-webkit-scrollbar {
                 width: 8px;
@@ -108,7 +108,7 @@ function close() {
             .tip-text {
                 display: flex;
                 justify-content: space-between;
-                margin-left: 46px;
+                margin-left: 50px;
                 line-height: 22px;
 
                 .text-content {
@@ -126,12 +126,13 @@ function close() {
 
         .lost-dialog {
             position: absolute;
+            top: 8px;
+            left: 10px;
+            z-index: 10;
             width: 98%;
             height: 98%;
-            transform: translate(10px, 8px);
             background-color: rgba(29, 17, 101, 0.6);
             border-radius: 15px;
-            z-index: 10;
         }
 
         .lost-amite {

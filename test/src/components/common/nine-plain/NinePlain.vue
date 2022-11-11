@@ -33,14 +33,14 @@ const whstyle = computed(() => {
     border-image-slice: 20 20 20 20 fill;
     border-image-width: 20px 20px 20px 20px;
     border-image-outset: 10px 10px 10px 10px;
-    border-image-repeat: round round;
+    border-image-repeat: stretch;
 }
 
 .style {
     display: inline-block;
     white-space: nowrap;
     font-size: 24px;
-    overflow: hidden;
+    // overflow: hidden;
 }
 
 // 奇偶的显示方式

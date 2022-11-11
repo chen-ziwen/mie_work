@@ -1,0 +1,22 @@
+:root #worldCup[data-theme='white'] {
+    --back-color: red;
+    --top-color: yellow;
+    --foot-color: green;
+}
+
+:root #worldCup[data-theme='black'] {
+    --back-color: pink;
+    --top-color: lightblue;
+    --foot-color: lightgreen;
+}
+
+
+:root #fenkai[data-theme='white'] {
+    --el-btn-color: #28DBA4;
+    --el-btn-text: #ffffff;
+}
+
+:root #fenkai[data-theme='black'] {
+    --el-btn-color: rgb(29, 28, 28);
+    --el-btn-text: white;
+}

@@ -1,14 +1,22 @@
 <template>
     <div class="draw">
         <div class="draw-main">
-            <div class="condition draw-gift">
-                1.&nbsp;
-                <img class="gift-icon" :src="giftIcon">
-                <span class="gift-name">{{ giftName }}&#215;{{ giftCount }}</span>
+            <div class="choice">
+                <i class="iconfont icon-arrow-right-filling"></i>
+                <span>“{{ barrage }}”</span>
             </div>
-            <div class="condition">
-                2.发送弹幕<span>“{{ barrage }}”</span>
-            </div>
+            <ul class="condition-box">
+                <li class="condition draw-gift">
+                    <img class="gift-icon" :src="giftIcon">
+                    <span class="gift-name">{{ giftName }} X{{ giftCount }}</span>
+                </li>
+                <li class="condition">
+                    发送弹幕<span>“{{ barrage }}”</span>
+                </li>
+                <li class="condition">
+                    发送弹幕<span>“{{ barrage }}”</span>
+                </li>
+            </ul>
         </div>
     </div>
 </template>
@@ -29,40 +37,53 @@ const props = withDefaults(defineProps<DrawProps>(), {})
 .draw {
     background-image: url(/assets/images/raffle/draw-bg.png);
     width: 346px;
-    height: 190px;
+    height: 196px;
     display: flex;
     align-items: flex-end;
-    justify-content: center;
 
-    &-main {
-        width: 341px;
-        height: 134px;
-        margin-bottom: 3px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-evenly;
+    .draw-main {
+        width: 340px;
+        height: 128px;
+        margin-bottom: 8px;
+        color: #fff;
 
-        .condition {
-            width: 304px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            font-size: 24px;
-            color: #fff;
+        .choice {
+            padding-left: 5px;
+
+            .iconfont icon-arrow-right-filling {
+                font-size: 18px;
+                color: #ffc43e;
+            }
         }
 
-        .draw-gift {
+        .condition-box {
+            margin: 0px;
 
-            .gift-icon {
-                width: 45px;
-                height: 45px;
+            .condition {
+                width: 304px;
+                height: 35px;
+                line-height: 35px;
+                font-size: 16px;
+                list-style-type: decimal;
             }
 
-            .gift-name {
-                margin-left: 21px;
+            .draw-gift {
+                .gift-icon {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 5px;
+                    vertical-align: middle;
+                }
+
+                .gift-name {
+                    margin-left: 10px;
+                }
             }
         }
     }
+}
+
+.icon-arrow-right-filling:before {
+    content: "\e68b";
 }
 </style>

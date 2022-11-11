@@ -1,13 +1,15 @@
 <template>
     <div class="raffle-start">
         <div class="card-back left-box">
-            <el-image v-if="noPlay" class="no-start" :src="'/assets/images/raffle/gamestart.png'" fit="contain" />
-            <div class="add-card-box" v-else>
-                <div class="add-card">
-                    <AddCard v-for="data in cards" :data="data" :key="data.userName + data.userAvatar"></AddCard>
+            <Transition name="scale">
+                <el-image v-if="noPlay" class="no-start" :src="'/assets/images/raffle/gamestart.png'" fit="contain" />
+                <div class="add-card-box" v-else>
+                    <div class="add-card">
+                        <AddCard v-for="data in cards" :data="data" :key="data.userName + data.userAvatar"></AddCard>
+                    </div>
+                    <span class="tip-text">正在统计中...</span>
                 </div>
-                <span class="tip-text">正在统计中...</span>
-            </div>
+            </Transition>
         </div>
         <div class="right-box">
             <div class="raffle-right">
@@ -67,6 +69,7 @@ function play() {
 </script>
 <style lang='scss' scoped>
 .raffle-start {
+    position: relative;
     display: flex;
     flex-wrap: nowrap;
 
@@ -79,7 +82,8 @@ function play() {
 
         .add-card-box {
             position: relative;
-            transform: translate(-15px, 25px);
+            left: -15px;
+            top: 25px;
 
             ::-webkit-scrollbar {
                 width: 8px;
@@ -120,9 +124,8 @@ function play() {
 
         .no-start {
             position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
+            left: calc(50% - 228px);
+            top: calc(50% - 87px);
         }
     }
 
@@ -213,5 +216,35 @@ function play() {
 .list-enter-active,
 .list-leave-active {
     transition: transform 1s ease, opacity 1s ease;
+}
+
+.scale-enter-active {
+    transition: opacity 1s ease-in-out;
+}
+
+.scale-leave-active {
+    animation: scale 0.8s ease-in-out;
+}
+
+.scale-enter-from,
+.scale-leave-to {
+    opacity: 0;
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    40% {
+        transform: scale(1.15);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(0.35);
+        opacity: 0;
+    }
 }
 </style>

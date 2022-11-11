@@ -18,13 +18,13 @@
     </div>
 </template>
 <script lang='ts' setup>
-import { clear } from 'console';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 interface LostListProps {
     data?: {
         userName?: string;
         userAvatar?: string;
-    }[]
+    }[];
+    timeshow: boolean;
 
 }
 const props = defineProps<LostListProps>();
@@ -34,7 +34,6 @@ const num = ref<number>(10);
 // 图片加载失败显示裂开图片
 const error = () => true;
 
-// 监听half数据，触发函数
 function closeL() {
     num.value = 10;
     if (timer) {
@@ -42,13 +41,18 @@ function closeL() {
     }
     timer = setInterval(() => {
         num.value--;
+        if (num.value <= 0) {
+            emit('close');
+            clearInterval(timer);
+        }
     }, 1000);
-
-    if (num.value <= 0) {
-        emit('close')
-    }
-
 }
+
+watch(() => props.timeshow, () => {
+    if (props.timeshow) {
+        closeL();
+    }
+})
 
 </script>
 <style lang='scss' scoped>

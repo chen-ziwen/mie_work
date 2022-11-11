@@ -1,8 +1,9 @@
 <template>
     <div class="raffle">
-        <RaffleStart v-if="la" :cards="cards" @boo="change" @start="start" @stop="stop"></RaffleStart>
-        <RaffleDraw v-else :cards="cards" @luck="luck" @half="half" @reject="reject" @reset="reset" @end="end" @shuffle="shuffle" @sort="sort"></RaffleDraw>
-
+        <transition name="opacity">
+            <RaffleStart v-if="la" :cards="cards" @boo="change" @start="start" @stop="stop"></RaffleStart>
+            <RaffleDraw v-else :cards="cards2" @luck="luck" @half="half" @reject="reject" @reset="reset" @end="end" @shuffle="shuffle" @sort="sort"></RaffleDraw>
+        </transition>
     </div>
 </template>
 <script lang='ts'>
@@ -22,6 +23,26 @@ export default defineComponent({
             la.value = !la.value;
         }
         const cards = [
+            { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '可爱小熊' },
+            { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '不懂你的话lalla的撒大' },
+            { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '我是谁' },
+            { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '我是谁' },
+            { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '我是谁' },
+            { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '我是谁' },
+            { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '我是谁' },
+            { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '我是谁' },
+            { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '我是谁' },
+            { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '我是谁' },
+            { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '我是谁' },
+            { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '我是谁' },
+            { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '我是谁' },
+            { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '我是谁' },
+            { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '我是谁' },
+            { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '我是谁' },
+            { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '我是谁' },
+            { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '我是谁' },
+        ];
+        const cards2 = [
             { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '可爱小熊' },
             { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '我是谁' },
             { userAvatar: '/assets/images/raffle/ava.jpeg', userName: '我是谁' },
@@ -71,6 +92,7 @@ export default defineComponent({
         }
         return {
             cards,
+            cards2,
             la,
             luck,
             reject,
@@ -96,5 +118,16 @@ export default defineComponent({
     align-items: center;
     justify-content: center;
     background-color: rgba(216, 234, 254);
+}
+
+.opacity-enter-active,
+.opacity-leave-active {
+    transition: all 1.2s ease-in-out;
+}
+
+.opacity-enter-from,
+.opacity-leave-to {
+    opacity: 0;
+    position: absolute;
 }
 </style>

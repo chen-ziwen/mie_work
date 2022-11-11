@@ -1,0 +1,137 @@
+/*弧形*/
+.one-arc-in {
+    animation: oneArc 2s;
+}
+
+@keyframes oneArc {
+    0% {
+        clip-path: ellipse(0% 50% at 0% 50%);
+    }
+
+    100% {
+        clip-path: ellipse(200% 200% at 0% 50%);
+    }
+}
+
+/*圆形效果*/
+.one-circle-in {
+    animation: oneCircle 2s;
+}
+
+@keyframes oneCircle {
+    0% {
+        clip-path: circle(0 at 50% 50%);
+    }
+
+    100% {
+        clip-path: circle(100% at 50% 50%);
+    }
+}
+
+/*三角效果*/
+.one-trilateral-in {
+    animation: oneTrilateral 2s;
+}
+
+@keyframes oneTrilateral {
+    0% {
+        clip-path: polygon(50% 50%, 49% 51%, 51% 51%);
+    }
+
+    100% {
+        clip-path: polygon(50% -100%, -100% 150%, 200% 150%);
+    }
+}
+
+/*带圆角的矩形*/
+.one-bead-in {
+    animation: oneBead 1.5s;
+}
+
+@keyframes oneBead {
+    0% {
+        clip-path: inset(50% round 10% 50%);
+    }
+
+    100% {
+        clip-path: inset(0% round 0);
+    }
+}
+
+/*菱形效果*/
+.one-rhombus-in {
+    animation: oneRhombus 1.5s;
+}
+
+@keyframes oneRhombus {
+    0% {
+        clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+    }
+
+    100% {
+        clip-path: polygon(50% -50%, 150% 50%, 50% 150%, -50% 50%);
+    }
+}
+
+/*十字星到矩形效果*/
+.one-cross-in {
+    animation: oneCross 1.5s;
+}
+
+@keyframes oneCross {
+    0% {
+        clip-path: polygon(50% 20%, 50% 50%, 20% 50%, 50% 50%, 50% 80%, 50% 50%, 80% 50%, 50% 50%);
+    }
+
+    100% {
+        clip-path: polygon(50% 0%, 0% 0%, 0% 50%, 0% 100%, 50% 100%, 100% 100%, 100% 50%, 100% 0%);
+    }
+}
+
+/*扇形展开效果*/
+.one-sector-in {
+    animation: oneSector 1s linear;
+}
+
+@keyframes oneSector {
+    0% {
+        clip-path: polygon(50% 100%, 50% 0%, 0% 0%, 100% 0%, 50% 0%);
+    }
+
+    50% {
+        clip-path: polygon(50% 100%, 0% 0%, 0% 0%, 100% 0%, 100% 0%);
+    }
+
+    100% {
+        clip-path: polygon(50% 100%, 0% 100%, 0% 0%, 100% 0%, 100% 100%);
+    }
+}
+
+/*十字星到矩形效果*/
+.two-cross-in {
+    animation: twoCross 2s;
+}
+
+@keyframes twoCross {
+    0% {
+        clip-path: polygon(50% 0%,
+                0% 0%,
+                0% 50%,
+                0% 100%,
+                50% 100%,
+                100% 100%,
+                100% 50%,
+                100% 0%);
+    }
+
+    100% {
+        clip-path: polygon(50% 20%,
+                50% 50%,
+                20% 50%,
+                50% 50%,
+                50% 80%,
+                50% 50%,
+                80% 50%,
+                50% 50%);
+    }
+}

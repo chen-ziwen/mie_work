@@ -1,0 +1,19 @@
+:root #world-cup-console[data-theme='white'] {
+    --el-btn-color: #28DBA4;
+    --el-btn-text: #ffffff;
+    --header-box-color: #F4F4F4;
+    --content-box-color: #E4E4E4;
+    --side-box-color: #F2F2F2;
+    --main-box-color: #FFFFFF;
+}
+
+/* 不需要的主题 随便写的*/
+:root #world-cup-console[data-theme='green'] {
+    --el-btn-color: rgb(72, 142, 247);
+    --el-btn-text: #bd066b;
+    --main-box-color: #90ee90;
+    --header-box-color: #64e079;
+    --content-box-color: #77e26d;
+    --side-box-color: #e3f15d;
+    --main-box-color: #91faa3;
+}

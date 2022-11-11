@@ -1,0 +1,85 @@
+// 图文
+.imgtext-box {
+    width: 972px;
+    height: 1070px;
+    background-image: url(/assets/images/world-cup/ptbox.png);
+    background-repeat: no-repeat;
+
+    .real-box {
+        width: 810px;
+        height: 920px;
+        transform: translateY(6px);
+
+        &::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        .line-box {
+            margin-left: 95px;
+
+            .barrage-msg-all {
+                position: relative;
+                padding: 20px 0px;
+            }
+        }
+
+    }
+}
+
+// 文字
+.text-box {
+    width: 874px;
+    height: 880px;
+    background-image: url(/assets/images/world-cup/textbox.png);
+    background-repeat: no-repeat;
+
+    .real-box {
+        width: 730px;
+        height: 730px;
+        transform: translateY(10px);
+
+        &::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        .line-box {
+            margin-left: 65px;
+
+            .barrage-msg-all {
+                padding: 20px 0px;
+            }
+        }
+
+    }
+}
+
+// 图片
+.img-box {
+    width: 550px;
+    height: 848px;
+    background-image: url(/assets/images/world-cup/imgbox.png);
+    background-repeat: no-repeat;
+
+    .real-box {
+        width: 500px;
+        height: 730px;
+        transform: translateY(10px);
+
+        &::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        .line-box {
+            margin-left: 40px;
+
+            .barrage-msg-all {
+                padding-top: 35px;
+
+                &:deep(.barrage-msg) {
+                    padding: 35px 0 20px 0;
+                }
+            }
+        }
+
+    }
+}
